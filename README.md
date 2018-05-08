@@ -81,15 +81,15 @@ Nhưng chúng ta có cần phải lo lắng về thiết lập này không? Nhì
 
 ![screen-shot-2016-10-03-at-7-19-47-pm][10]
 
-In this case, the total amount of dirty pages is high, and it looks like InnoDB can't keep up with flushing them. If we have a fast disk subsystem (i.e., SSD), we might benefit from increasing innodb_io_capacity&nbsp;and innodb_io_capacity_max.
+Trong trường hợp này, tổng lượng dirty page là khá cao, và dường như InnoDB không thể flush chúng. Nếu chúng ta có một hệ thống ổ đĩa nhanh (ví dụ., SSD), chúng ta có lợi trong việc tăng innodb_io_capacity&nbsp;và innodb_io_capacity_max.
 
-_**Conclusion or&nbsp;TL;DR version**_
+_**Kết luận hoặc phiên bản TL;DR**_
 
-The new MySQL 5.7 defaults are much better for general purpose workloads. At the same time, we still need to configure InnoDB variables to take advantages of the amount of RAM on the box. After installation,&nbsp;follow these steps:
+Các mặc định trong MySQL 5.7 tốt hơn nhiều cho khối lượng công việc chung. Cùng một lúc, chugns ta vẫn cần cấu hình các biến của InnoDB để tận dụng số lượng RAM trên box. Sau khi cài đặt thì làm theo cái bước sau:
 
-1. Add InnoDB variables to my.cnf (as described above) and restart MySQL
-2. Install a monitoring system, (e.g., Percona Monitoring and Management platform)
-3. Look at the graphs and determine if MySQL needs to be tuned further
+1. Thêm các biến InnoDB vào my.cnf (như mô tả ở trên) và khởi động lại MySQL
+2. Cài đặt hệ thống giám sát, (ví dụ., Percona Monitoring and Management platform)
+3. Nhìn vào biểu đồ và xác định xem liệu MySQL có cần được điều chỉnh thêm hay không
 
 ### More resources:
 
