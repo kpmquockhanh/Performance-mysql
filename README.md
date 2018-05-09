@@ -5,7 +5,7 @@
 
 Cập nhật của blog này [blog của Stephane Combaudon về  điều chỉnh hiêu năng MySQL][1], và bao gồm điều chỉnh hiệu năng MySQL 5.7 ngay sau khi cài đặt.
 
-Một vài năm trước, Stephane Combaudon đã viết một blog trên [10 thiết lập điều chỉnh hiệu suất của MySQL sau khi cài đặt ][1] bao gồm (ngay bây giờ) phiên bản cũ của MySQL: 5.1, 5.5 và 5.6. Trong bài viết này, Tôi sẽ xem xét những điều chỉnh trong MySQL 5.7 (với a&nbsp;chủ yếu là InnoDB).
+Một vài năm trước, Stephane Combaudon đã viết một blog là [10 thiết lập điều chỉnh hiệu suất của MySQL sau khi cài đặt ][1] bao gồm (ngay bây giờ) phiên bản cũ của MySQL: 5.1, 5.5 và 5.6. Trong bài viết này, Tôi sẽ xem xét những điều chỉnh trong MySQL 5.7 (với a&nbsp;chủ yếu là InnoDB).
 
 Tin tốt là MySQL 5.7 có giá trị mặc định tốt hơn đáng kể.&nbsp;Morgan Tocker đã tạo ra [trang với danh sách đầy đủ các tính năng trong MySQL 5.7][2], và là một tài liệu tham khảo tuyệt vời. Ví dụ, Biến sau đây được đặt _mặc đinh_ :
 
@@ -13,8 +13,6 @@ Trong MySQL 5.7, chỉ có 4 biến quan trong cần được thay đổi. Tuy n
 
 Đẻ bắt đầu, thêm cài đặt này vào trong my.cnf xuống dướt phần [mysqld]. bạn cần phải khởi động lại MySQL:
 
-| ----- |
-|   | 
 
 [mysqld]
 
@@ -57,15 +55,15 @@ _InnoDB buffer pool size_.&nbsp;Nhìn vào biểu đồ:
 
 ![MySQL 5.7 Performance Tuning][5]
 
-As we can see, we can probably benefit from increasing the InnoDB buffer pool size a bit to ~10G, as we have RAM available and the number of free pages is small compared to the total buffer pool.
+Như chúng ta có thể thấy, chúng ta có thể có lợi từ việc tăng kích thước bộ nhớ đệm của InnoDB lên một chút ~10G, như những gì chúng ta có lượng RAM khả dụng và số trang trống nhỏ hơn so hới tổng bộ nhớ đệm.+
 
-_InnoDB log file size._ Look at the graph:
+_Kích thước file log của InnoDB._ Nhìn vào đồ thị sau:
 
 ![MySQL 5.7 Performance Tuning][6]
 
 Như chúng ta thấy ở đây, InnoDB thường ghi 2.26 GB dữ liệu trong một giờ, vượt quá tổng kích thước của các file log (2G). Bây giờ chúng ta có thể tăng biến innodb_log_file_size&nbsp; và khởi động lại MySQL. Ngoài ra, sử dụng "show engine InnoDB status" để [tínhs toán dung lượng file log tốt nhất cho InnoDB][7].
 
-_**Một vìa biến khác**_
+_**Một vài biến khác**_
 
 Có một số biến của InnoDB có thể điều chỉnh thêm:
 
